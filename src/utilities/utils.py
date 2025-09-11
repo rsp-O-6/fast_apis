@@ -1,4 +1,4 @@
-import psycopg
+import psycopg2
 import base64
 import json
 import yaml
@@ -18,7 +18,7 @@ def execute_query(query, params=None) -> dict[str, pd.DataFrame]:
     result = {}
 
     try:
-        with psycopg.connect(conn_string) as conn:
+        with psycopg2.connect(conn_string) as conn:
             print("✅ Successfully connected to database")
 
             with conn.cursor() as cur:
@@ -37,7 +37,7 @@ def execute_query(query, params=None) -> dict[str, pd.DataFrame]:
                     result["data"] = pd.DataFrame()
                     print("⚠️ No data found, returning empty DataFrame.")
 
-    except (Exception, psycopg.Error) as error:
+    except (Exception, psycopg2.Error) as error:
         print("❌ Error occurred:", error)
 
     print("📴 Database connection closed\n")

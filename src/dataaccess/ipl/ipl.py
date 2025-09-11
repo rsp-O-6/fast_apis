@@ -1,8 +1,8 @@
 from src.utilities.utils import execute_query
+from src.schema.IPL import IplAddDetails
 
 
-
-def ipl_player_details():
-    res = execute_query(" call usp_add_player_details()")
-
+def ipl_player_details(fname:str,gmail:str,pwd:str):
+    res = execute_query("""call usp_test(_fname -> %s, _gmail _> %s,  _pwd -> %s),
+      (fname, gmail, pwd) """)
     return res
