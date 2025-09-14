@@ -29,7 +29,7 @@ def verify_token(token: str):
         if email is None:
             return None
         return email
-    except JWTError:
+    except JWTError: 
         return None
 
 
